@@ -9,6 +9,7 @@ namespace TestProj
 	{
 		static void Main(string[] args)
 		{
+			//服务器测试修改，客户端同步
 		}
 	}
 }
