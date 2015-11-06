@@ -15,6 +15,9 @@ namespace TestProj
     {
         System.Timers.Timer _timer;
 
+		/// <summary>
+		/// 测试服务
+		/// </summary>
         public TestService()
         {
             InitializeComponent();
