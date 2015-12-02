@@ -63,7 +63,7 @@
     <!-- IsDelRemoteFile: 是否删除已采集的远端FTP数据文件，bool，true：删除， false：不删除-->
     <!-- BackDir: 备份路径 -->
     <!-- FileEncoding: 数据源文件编码，支持UTF8、UTF32、GB2312、UNICODE、DEFAULT，默认：DEFAULT-->
-    <!-- Fields: 数据源文件中字段及其位置的对应关系 -->
+    <!-- Fields: 数据源文件中字段及其位置的对应关系，DestSqlId语句中的insert语句的值(#XXX#)来源， -->
     <!--  -->
     <!--  -->
     <!--  -->
