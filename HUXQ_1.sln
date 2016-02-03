@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{2610BC9C-B219-461C-AFF1-747DDEEC28D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogHelper", "Modules\LogHelper\LogHelper.csproj", "{8EF0F81B-462D-47BB-A9A8-79744FD54705}"
@@ -10,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProj", "TestProj\TestProj.csproj", "{75C2FA55-20C4-4060-A8B1-2F5F34C7636C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigHelper", "Modules\ConfigHelper\ConfigHelper.csproj", "{8AF834DB-BCF9-46E8-9FDD-D7982BE7A959}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionInstall", "CollectionInstall\CollectionInstall.csproj", "{41D86C46-5670-49AD-A929-3E03BD29F738}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTabControl", "MyTabControl\MyTabControl.csproj", "{46101A9A-D74E-44DE-8B0A-9939B76F45FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,14 @@ Global
 		{8AF834DB-BCF9-46E8-9FDD-D7982BE7A959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AF834DB-BCF9-46E8-9FDD-D7982BE7A959}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AF834DB-BCF9-46E8-9FDD-D7982BE7A959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D86C46-5670-49AD-A929-3E03BD29F738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D86C46-5670-49AD-A929-3E03BD29F738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D86C46-5670-49AD-A929-3E03BD29F738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D86C46-5670-49AD-A929-3E03BD29F738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46101A9A-D74E-44DE-8B0A-9939B76F45FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46101A9A-D74E-44DE-8B0A-9939B76F45FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46101A9A-D74E-44DE-8B0A-9939B76F45FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46101A9A-D74E-44DE-8B0A-9939B76F45FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

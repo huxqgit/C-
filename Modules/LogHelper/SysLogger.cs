@@ -38,7 +38,7 @@ namespace LogHelper
 			{
 				lock (SysLogger._LogLock)
 				{
-					string logFile = string.Format(@"{0}\{1}.log", _LogPath, DateTime.Now.ToString("yyyy-MM-dd"));
+					string logFile = string.Format(@"{0}\Log_{1}.log", _LogPath, DateTime.Now.ToString("yyyy-MM-dd"));
 					SysFileHandle.WriteToFile(logFile, content);
 				}
 			}
@@ -60,13 +60,12 @@ namespace LogHelper
 				string file = destFile;
 				if (string.IsNullOrEmpty(file))
 				{
-					file = string.Format(@"{0}\{1}.log", _LogPath, DateTime.Now.ToString("yyyy-MM-dd"));
+					file = string.Format(@"{0}\Log_{1}.log", _LogPath, DateTime.Now.ToString("yyyy-MM-dd"));
 				}
-
-				if (file.Split('\\').Length == 1)
-				{
-					file = string.Format(@"{0}\{1}", _LogPath, destFile);
-				}
+                else
+                {
+                    file = GetFilePath(file, "Log", _LogPath);
+                }
 
 				lock (SysLogger._LogLock)
 				{
@@ -108,16 +107,15 @@ namespace LogHelper
 		{
 			try
 			{
-				string file = destFile;
+				string file = destFile;                
 				if (string.IsNullOrEmpty(file))
 				{
 					file = string.Format(@"{0}\Error_{1}.log", _ErrLogPath, DateTime.Now.ToString("yyyy-MM-dd"));
 				}
-
-				if (file.Split('\\').Length == 1)
-				{
-					file = string.Format(@"{0}\{1}", _ErrLogPath, destFile);
-				}
+                else
+                {
+                    file = GetFilePath(file, "Error", _ErrLogPath);
+                }
 
 				lock (SysLogger._LogLock)
 				{
@@ -164,11 +162,10 @@ namespace LogHelper
 				{
 					file = string.Format(@"{0}\Sql_{1}.log", _SqlLogPath, DateTime.Now.ToString("yyyy-MM-dd"));
 				}
-
-				if (file.Split('\\').Length == 1)
-				{
-					file = string.Format(@"{0}\{1}", _SqlLogPath, destFile);
-				}
+                else
+                {
+                    file = GetFilePath(file, "Sql", _SqlLogPath);
+                }
 
 				lock (SysLogger._LogLock)
 				{
@@ -180,5 +177,30 @@ namespace LogHelper
 				throw ex;
 			}
 		}
+
+        private string GetFilePath(string file, string fileType, string path)
+        {
+            string fileName = file;
+            try
+            {                
+                //文件名后缀                
+                string fileExtension = System.IO.Path.GetExtension(fileName);
+                if (string.IsNullOrEmpty(fileExtension))
+                {
+                    fileName = string.Format(@"{0}.log", fileName);
+                }
+
+                if (string.IsNullOrEmpty(System.IO.Path.GetDirectoryName(fileName)) && !string.IsNullOrEmpty(path))
+                {
+                    fileName = string.Format(@"{0}\{1}_{2}", path, fileType, fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return fileName;
+        }
     }
 }

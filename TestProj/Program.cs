@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceProcess;
+using System.IO;
+using LogHelper;
 
 namespace TestProj
 {
@@ -16,13 +18,13 @@ namespace TestProj
             //return;
 
 
-            //后台服务
-            ServiceBase[] serv = new ServiceBase[]
-            {
-                new TestService()
-            };
+            ////后台服务
+            //ServiceBase[] serv = new ServiceBase[]
+            //{
+            //    new TestService()
+            //};
 
-            ServiceBase.Run(serv);
+            //ServiceBase.Run(serv);
 		}
 	}
 }
