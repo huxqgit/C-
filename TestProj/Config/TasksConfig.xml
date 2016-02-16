@@ -5,9 +5,10 @@
     <!-- Type: 数据库类型（orcle/informix）-->    
     <DbItem 
       Name="江西整合库"
-      Type="oracle"
+      Type="Oracle"
       ConnectionString="Data Source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST =192.168.10.36)(PORT = 1521)))(CONNECT_DATA = (SID = nscs) ) );User ID=JX2015;Password=JX2015;"      
       />
+    <DbItem Name="广西玉林库" Type="Oracle" ConnectionString="Data Source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST =192.168.10.36)(PORT = 1521)))(CONNECT_DATA = (SID = nscs) ) );User ID=GXYL;Password=GXYL;"/>
   </DbConfigs>
 
   <FtpConfigs>
@@ -77,10 +78,10 @@
       ExeState="-1"
       BeginTime="2015-12-01 08:00:00"
       EndTime=""
-      SourceDbName=""
+      SourceDbName="广西玉林库"
       SourceSqlId=""
       PrefSqlId=""
-      DestDbName=""
+      DestDbName="广西玉林库"
       DestSqlId=""
       EndSqlId=""
       UserReaderMode=""      
