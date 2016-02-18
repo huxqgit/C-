@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Sqls>
+    <Sql Name="">
+      select * from ....
+    </Sql>/>
+    
+    <Sql Name="" >
+      insert into ....
+    </Sql>
+  </Sqls>
+</Root>

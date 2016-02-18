@@ -6,7 +6,7 @@ using System.Data;
 
 namespace DbHelper
 {
-    public class SysDbHandle : IDataAccess, IDisposable
+    public class SysDbHandle : IDataAccess
     {
         private IDbConnection _IDbConnection = null;
         private IDbCommand _IDbCommand = null;

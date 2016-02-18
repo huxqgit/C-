@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <DbConfig>
+    <Db Name="ORACLE_TEST" Type="oracle" ConnectionString="" SqlFile=""/>
+    <Db Name="INFORMIX_TEST" Type="informix" ConnectionString="" SqlFile=""/>
+  </DbConfig>
+</Root>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <DbConfigs>    
+    <!-- Name: 数据库别名-->
+    <!-- Type: 数据库类型（orcle/informix）-->    
+    <DbItem 
+      Name="江西整合库" 
+      Type="Oracle" 
+      ConnectionString="Data Source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST =192.168.10.36)(PORT = 1521)))(CONNECT_DATA = (SID = nscs) ) );User ID=JX2015;Password=JX2015;"
+    />
+    
+    <DbItem 
+      Name="广西玉林库" 
+      Type="Oracle" 
+      ConnectionString="Data Source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST =192.168.10.36)(PORT = 1521)))(CONNECT_DATA = (SID = nscs) ) );User ID=GXYL;Password=GXYL;"
+    />
+  </DbConfigs>
+
+  <FtpConfigs>
+    <FtpItem
+      Name="集中性能FTP源"
+      IP="192.168.10.37"
+      Port="21"
+      UserName="nscs"
+      Password="nscs@123"
+      RemoteDir="UserActionLog"
+      />
+  </FtpConfigs>
+
+  <ScoketConfigs>
+    <SocketItem
+      Name=""
+      IP=""
+      Port=""
+      />
+  </ScoketConfigs>
+  <Tasks>
+    <!-- 公共部分 -->
+    <!-- IsEnabled: 是否启动此任务，bool，启动：true，不启动：false-->
+    <!-- Name: 采集名称，string-->
+    <!-- TaskType: 采集方式（DB/FTP/SOCKET），string，数据库方式：DB，FTP方式：FTP，Socket方式：SOCKET-->
+    <!-- Cycle: 采集周期，int，单位：秒-->
+    <!-- ExeState: 任务执行状态（1/0），int，1：正在执行；0：未执行 -->
+    <!-- BeginTime: 采集任务开始时间，string-->
+    <!-- EndTime: 采集任务结束时间，string-->
+    <!-- PrefSqlId: 源数据入目的数据库之前执行的sql，DestSqlId之前执行，比如delete等，string，对应SqlFile所示文件里的sql，或者直接写sql，此时SqlFile为空-->
+    <!-- DestDbName: 采集目的数据库，string，对应DbConfigs->DbItem->Name-->
+    <!-- DestSqlId: 目的数据库入库sql，string，对应SqlFile所示文件里的sql，或者直接写sql，此时SqlFile为空-->
+    <!-- EndSqlId: DestSqlId执行之后需要执行的sql，string，对应SqlFile所示文件里的sql，或者直接写sql，此时SqlFile为空-->
+    <!-- UserReaderMode: 数据源获取方式，bool，true模式为数据源获取通过流方式读取，如果数据源数据比较多，应该采取这种方式，否则配置为false即可-->
+    <!-- IsUpdate: 采集是否处于混合模式，bool，设置为true表明可以自动更新已经存在的数据-->
+    <!-- UpdateCheckSqlId: 更新检测SQL。Updatable为true时有效-->
+    <!-- UpdateSqlId: 更新数据的SQL。 Updatable为true时有效-->
+    <!-- SqlFile: sql存放的文件-->
+    
+
+    <!-- DB采集方式部分 -->    
+    <!-- SourceDbName: 采集源数据库，对应DbConfigs->DbItem->Name-->
+    <!-- SourceSqlId: 数据源获取sql，对应SqlFile所示文件里的sql，或者直接写sql，此时SqlFile为空-->
+
+    <!-- FTP采集方式部分 -->
+    <!-- SourceFtp: FTP源， 对应FtpConfigs->FtpItem->Name-->
+    <!-- FilePrefix: 数据源文件前缀名 -->
+    <!-- FileSuffix: 数据源文件后缀名，如：.csv, .log, .txt -->
+    <!-- DataSplit: 源文件中数据分隔符-->
+    <!-- Offset: 源文件从第一行开始偏移的行数 -->
+    <!-- LocalDir: 本地存放路径 -->
+    <!-- IsDelLocalFile: 是否删除采集回来的数据文件，bool，true：删除， false：不删除-->
+    <!-- IsDelRemoteFile: 是否删除已采集的远端FTP数据文件，bool，true：删除， false：不删除-->
+    <!-- BackDir: 备份路径 -->
+    <!-- FileEncoding: 数据源文件编码，支持UTF8、UTF32、GB2312、UNICODE、DEFAULT，默认：DEFAULT-->
+    <!-- Fields: 数据源文件中字段及其位置的对应关系，DestSqlId语句中的insert语句的值(#XXX#)来源， -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <TaskItem 
+      IsEnabled="false"
+      Name="DB测试采集1"
+      TaskType="DB"
+      Cycle="86400"
+      ExeState="0"
+      BeginTime="2015-12-01 08:00:00"
+      EndTime=""
+      SourceName="广西玉林库"
+      SourceSqlId=""
+      PrefSqlId=""
+      DestDbName="广西玉林库"
+      DestSqlId=""
+      EndSqlId=""
+      UserReaderMode=""      
+      IsUpdate=""
+      UpdateCheckSqlId=""
+      UpdateSqlId=""      
+      />       
+    
+
+    <TaskItem
+      IsEnabled="true"
+      Name="集中性能WAP日志采集"
+      TaskType="FTP"
+      Cycle="86400"
+      ExeState="0"
+      BeginTime="2015-12-01 08:00:00"
+      EndTime=""
+      SourceName="集中性能FTP源"
+      FilePrefix="KeHuXingWeiChaXun"
+      FileSuffix=".csv"      
+      DataSplit="," 
+      Offset="1"      
+      LocalDir="F:\UserActionLog"
+      IsDelLocalFile="false"
+      IsDelRemoteFile="false"      
+      FileEncoding="DEFAULT"
+      Fields="0,WAP_URL;1,USER_ID;2,USER_NAME;3,LOGIN_TIME;4,QUERY_TIME;5,START_TIME;6,STOP_TIME;7,NETMODE;8,PHONE"
+      PrefSqlId=""
+      DestDbName="江西整合库"
+      DestSqlId="insert into TB_NC_WAP_LOG (
+        WAP_URL,
+        USER_ID,
+        USER_NAME,
+        LOGIN_TIME,
+        QUERY_TIME,
+        START_TIME,
+        STOP_TIME,
+        NETMODE,
+        PHONE)
+        values (
+        '#WAP_URL#',
+        '#USER_ID#',
+        '#USER_NAME#',
+        to_date('#LOGIN_TIME#', 'yyyy-mm-dd hh24:mi:ss'),
+        to_date('#QUERY_TIME#', 'yyyy-mm-dd hh24:mi:ss'),
+        to_date('#START_TIME#', 'yyyy-mm-dd hh24:mi:ss'),
+        to_date('#STOP_TIME#', 'yyyy-mm-dd hh24:mi:ss'),
+        '#NETMODE#',
+        '#PHONE#')"
+      EndSqlId=""
+      UserReaderMode=""      
+      IsUpdate="false"
+      UpdateCheckSqlId=""
+      UpdateSqlId=""      
+      />
+    
+    
+  </Tasks>
+</Root>
