@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.theCollectType = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSet = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -44,21 +43,22 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabPageSet = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPageSelect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSelect)).BeginInit();
             this.tabPageAdd.SuspendLayout();
             this.tabPageSet.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSelect
             // 
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelect.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnSelect.Cursor = System.Windows.Forms.Cursors.AppStarting;
-            this.btnSelect.Location = new System.Drawing.Point(544, 17);
+            this.btnSelect.Location = new System.Drawing.Point(164, 60);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(90, 30);
+            this.btnSelect.Size = new System.Drawing.Size(95, 30);
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "查询";
             this.btnSelect.UseVisualStyleBackColor = false;
@@ -66,9 +66,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAdd.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnAdd.Location = new System.Drawing.Point(651, 17);
+            this.btnAdd.Location = new System.Drawing.Point(293, 60);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(90, 30);
             this.btnAdd.TabIndex = 1;
@@ -78,15 +78,15 @@
             // 
             // theCollectName
             // 
-            this.theCollectName.Location = new System.Drawing.Point(98, 26);
+            this.theCollectName.Location = new System.Drawing.Point(170, 20);
             this.theCollectName.Name = "theCollectName";
-            this.theCollectName.Size = new System.Drawing.Size(216, 21);
+            this.theCollectName.Size = new System.Drawing.Size(192, 21);
             this.theCollectName.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 35);
+            this.label1.Location = new System.Drawing.Point(104, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 3;
@@ -94,8 +94,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(344, 34);
+            this.label2.Location = new System.Drawing.Point(384, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 4;
@@ -103,35 +104,27 @@
             // 
             // theCollectType
             // 
+            this.theCollectType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.theCollectType.FormattingEnabled = true;
-            this.theCollectType.Location = new System.Drawing.Point(415, 27);
+            this.theCollectType.Location = new System.Drawing.Point(455, 21);
             this.theCollectType.Name = "theCollectType";
             this.theCollectType.Size = new System.Drawing.Size(87, 20);
             this.theCollectType.TabIndex = 5;
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(12, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(893, 1);
-            this.label3.TabIndex = 6;
-            // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 103);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Location = new System.Drawing.Point(12, 116);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(893, 374);
+            this.panel1.Size = new System.Drawing.Size(893, 361);
             this.panel1.TabIndex = 7;
             // 
             // btnSet
             // 
             this.btnSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSet.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnSet.Location = new System.Drawing.Point(756, 17);
+            this.btnSet.Location = new System.Drawing.Point(423, 60);
             this.btnSet.Name = "btnSet";
             this.btnSet.Size = new System.Drawing.Size(90, 30);
             this.btnSet.TabIndex = 8;
@@ -165,10 +158,11 @@
             // dataGridViewSelect
             // 
             this.dataGridViewSelect.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSelect.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewSelect.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridViewSelect.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewSelect.Name = "dataGridViewSelect";
             this.dataGridViewSelect.RowTemplate.Height = 23;
-            this.dataGridViewSelect.Size = new System.Drawing.Size(885, 301);
+            this.dataGridViewSelect.Size = new System.Drawing.Size(879, 160);
             this.dataGridViewSelect.TabIndex = 0;
             // 
             // tabPageAdd
@@ -215,21 +209,32 @@
             this.button3.Text = "配置";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.theCollectName);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnSet);
+            this.groupBox1.Controls.Add(this.theCollectType);
+            this.groupBox1.Controls.Add(this.btnAdd);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.btnSelect);
+            this.groupBox1.Location = new System.Drawing.Point(121, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(679, 100);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "采集查询";
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 489);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.btnSet);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.theCollectType);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.theCollectName);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnSelect);
             this.Name = "StartForm";
             this.Text = "采集配置1.0";
             this.Load += new System.EventHandler(this.StartForm_Load);
@@ -238,8 +243,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSelect)).EndInit();
             this.tabPageAdd.ResumeLayout(false);
             this.tabPageSet.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -251,7 +257,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox theCollectType;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSet;
         private System.Windows.Forms.TabControl tabControl1;
@@ -261,6 +266,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridViewSelect;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
