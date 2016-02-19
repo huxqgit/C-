@@ -39,7 +39,7 @@ namespace CollectionInstall
 
         private void btnSet_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPageSet;
+            tabControl1.SelectedTab = tabPageSetDb;
         }
 
         private void StartForm_Load(object sender, EventArgs e)
@@ -85,8 +85,8 @@ namespace CollectionInstall
 
             string[] itemArray = {
                                     "序号",
-                                    "是否有效",
                                     "采集名称",
+                                    "是否有效",                                    
                                     "采集方式",
                                     "采集周期（秒）",
                                     "采集状态",
@@ -110,7 +110,7 @@ namespace CollectionInstall
                                     "是否开启流式读取",
                                     "是否增量更新",
                                     "已有数据检测SQL",
-                                    "增量更新SQL"
+                                    "增量更新SQL"                                    
                                  };
             foreach (string item in itemArray)
             {
@@ -131,8 +131,8 @@ namespace CollectionInstall
                 DataRow dr = dt.NewRow();
                 string taskType = GetValueFromAttributes(taskNode.Attributes["TaskType"]);
                 dr["序号"] = num++;
-                dr["是否有效"] = GetValueFromAttributes(taskNode.Attributes["IsEnabled"]).ToLower() == "true" ? "有效" : "无效";
                 dr["采集名称"] = GetValueFromAttributes(taskNode.Attributes["Name"]);
+                dr["是否有效"] = GetValueFromAttributes(taskNode.Attributes["IsEnabled"]).ToLower() == "true" ? "有效" : "无效";                
                 dr["采集方式"] = taskType;
                 dr["采集周期（秒）"] = GetValueFromAttributes(taskNode.Attributes["Cycle"]);
                 dr["采集状态"] = GetValueFromAttributes(taskNode.Attributes["ExeState"]) == "1" ? "正在执行" : "未执行";
@@ -180,30 +180,41 @@ namespace CollectionInstall
             }
 
             ds.Tables.Add(dt);
-
+            
             dataGridViewSelect.AllowUserToAddRows = false;
             dataGridViewSelect.DataSource = ds;
             dataGridViewSelect.DataMember = autoTable;
+            dataGridViewSelect.ReadOnly = true; //禁止编辑
 
             dataGridViewSelect.Columns[0].Width = 40;
             dataGridViewSelect.Columns[1].Width = 80;
             dataGridViewSelect.Columns[3].Width = 80;
             dataGridViewSelect.Columns[4].Width = 80;
             dataGridViewSelect.Columns[5].Width = 80;
-            dataGridViewSelect.ReadOnly = true; //禁止编辑
-
             
+            
+            //dataGridViewSelect.Columns[27].DefaultCellStyle.ForeColor = Color.Blue;
 
+            if(!dataGridViewSelect.Columns.Contains("操作"))
+            {                
+                DataGridViewButtonColumn editcCol = new DataGridViewButtonColumn();                
+                editcCol.Name = "操作";
+                editcCol.UseColumnTextForButtonValue = true;
+                editcCol.Text = "修改";
+                dataGridViewSelect.Columns.Add(editcCol);
+                dataGridViewSelect.Columns[27].Width = 40;
+                
+            }            
         }
 
         //鼠标移动到某行时更改背景色  
-        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)   
-        { 
-            if (e.RowIndex >= 0)        
-            {
-                dataGridViewSelect.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightBlue;        
-            }  
-        } 
+        //private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)   
+        //{ 
+        //    if (e.RowIndex >= 0)        
+        //    {
+        //        dataGridViewSelect.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightBlue;        
+        //    }  
+        //} 
 
 
         private string GetValueFromAttributes(XmlAttribute att)
@@ -211,14 +222,47 @@ namespace CollectionInstall
             return att == null ? "" : att.Value;            
         }
 
-        private void dataGridView1_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        /// <summary>
+        /// 鼠标悬停事件，只针对'操作'列
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            this.Cursor = Cursors.Hand;//设置为手型
+            if(e.RowIndex >= 0 && e.ColumnIndex == 27 && this.Cursor != Cursors.Hand)
+            {
+                //dataGridViewSelect.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Red;
+                //this.Cursor = Cursors.Hand;//设置为手型
+            }      
         }
 
+        /// <summary>
+        /// 鼠标悬停离开事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            this.Cursor = Cursors.Default;//离开时恢复默认
+            if (e.RowIndex >= 0 && e.ColumnIndex == 27)
+            {
+                //dataGridViewSelect.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.Blue;
+                //this.Cursor = Cursors.Arrow;
+                //this.Cursor = Cursors.Default;//离开时恢复默认             
+            }            
         }
+
+        /// <summary>
+        /// 单元格点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewSelect_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dataGridViewSelect.Columns[e.ColumnIndex].Name == "操作")
+            {
+                tabControl1.SelectedTab = tabPageSetDb;
+            }
+        }
+
     }
 }
