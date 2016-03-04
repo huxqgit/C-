@@ -180,31 +180,40 @@ namespace CollectionInstall
             }
 
             ds.Tables.Add(dt);
-            
+
+            if (!dataGridViewSelect.Columns.Contains("详情"))
+            {
+                DataGridViewButtonColumn editcCol = new DataGridViewButtonColumn();
+                editcCol.Name = "详情";
+                editcCol.UseColumnTextForButtonValue = true;
+                editcCol.Text = "详情";
+                dataGridViewSelect.Columns.Add(editcCol);
+                dataGridViewSelect.Columns[0].Width = 40;
+            }
+
+            if (!dataGridViewSelect.Columns.Contains("操作"))
+            {
+                DataGridViewButtonColumn editcCol = new DataGridViewButtonColumn();
+                editcCol.Name = "操作";
+                editcCol.UseColumnTextForButtonValue = true;
+                editcCol.Text = "修改";
+                dataGridViewSelect.Columns.Add(editcCol);
+                dataGridViewSelect.Columns[1].Width = 40;
+            } 
+
             dataGridViewSelect.AllowUserToAddRows = false;
             dataGridViewSelect.DataSource = ds;
             dataGridViewSelect.DataMember = autoTable;
             dataGridViewSelect.ReadOnly = true; //禁止编辑
 
-            dataGridViewSelect.Columns[0].Width = 40;
-            dataGridViewSelect.Columns[1].Width = 80;
+            dataGridViewSelect.Columns[2].Width = 40;
             dataGridViewSelect.Columns[3].Width = 80;
-            dataGridViewSelect.Columns[4].Width = 80;
             dataGridViewSelect.Columns[5].Width = 80;
+            dataGridViewSelect.Columns[6].Width = 80;
+            dataGridViewSelect.Columns[7].Width = 80;
             
             
-            //dataGridViewSelect.Columns[27].DefaultCellStyle.ForeColor = Color.Blue;
-
-            if(!dataGridViewSelect.Columns.Contains("操作"))
-            {                
-                DataGridViewButtonColumn editcCol = new DataGridViewButtonColumn();                
-                editcCol.Name = "操作";
-                editcCol.UseColumnTextForButtonValue = true;
-                editcCol.Text = "修改";
-                dataGridViewSelect.Columns.Add(editcCol);
-                dataGridViewSelect.Columns[27].Width = 40;
-                
-            }            
+            //dataGridViewSelect.Columns[27].DefaultCellStyle.ForeColor = Color.Blue;        
         }
 
         //鼠标移动到某行时更改背景色  
@@ -260,9 +269,81 @@ namespace CollectionInstall
         {
             if(dataGridViewSelect.Columns[e.ColumnIndex].Name == "操作")
             {
-                tabControl1.SelectedTab = tabPageSetDb;
+                if (dataGridViewSelect.CurrentRow.Cells["采集方式"].Value.ToString().ToLower() == "ftp")
+                {
+                    tabControl1.SelectedTab = tabPageSetFtp;
+                }
+                else if (dataGridViewSelect.CurrentRow.Cells["采集方式"].Value.ToString().ToLower() == "db")
+                {
+                    tabControl1.SelectedTab = tabPageSetDb;
+                }
+                else if (dataGridViewSelect.CurrentRow.Cells["采集方式"].Value.ToString().ToLower() == "socket")
+                {
+                    tabControl1.SelectedTab = tabPageSocket;
+                }                
+            }
+            
+            if(dataGridViewSelect.Columns[e.ColumnIndex].Name == "详情")
+            {
+                if (dataGridViewSelect.CurrentRow.Cells["采集方式"].Value.ToString().ToLower() == "ftp")
+                {
+                    tabControl1.SelectedTab = tabPageSetFtp;
+                    SetControlEnabled(groupBox3, false);                      
+                }
+                else if (dataGridViewSelect.CurrentRow.Cells["采集方式"].Value.ToString().ToLower() == "db")
+                {
+                    tabControl1.SelectedTab = tabPageSetDb;
+                    SetControlEnabled(groupBox2, false);
+                }
+                else if (dataGridViewSelect.CurrentRow.Cells["采集方式"].Value.ToString().ToLower() == "socket")
+                {
+                    tabControl1.SelectedTab = tabPageSocket;
+                    SetControlEnabled(groupBox4, false);
+                }       
             }
         }
+
+        private void ViewTabPage(string pageType, bool isEdit)
+        {
+            if(pageType == "ftp")
+            {
+
+            }
+            else if (pageType == "db")
+            {
+
+            }
+            else if (pageType == "socket")
+            {
+
+            }
+        }
+
+        private void SetContr
+
+        /// <summary>
+        /// 设置TextBox、ComboBox控件是否可编辑
+        /// </summary>
+        /// <param name="ctr"></param>
+        /// <param name="isEnabled"></param>
+        private void SetControlEnabled(Control ctr, bool isEnabled)
+        {
+            if(ctr is GroupBox)
+            {
+                foreach (Control control in ctr.Controls)
+                {
+                    if (control is TextBox || control is ComboBox)
+                    {
+                        control.Enabled = isEnabled;
+                    }
+                }
+            }
+            else if(ctr is TextBox || ctr is ComboBox)
+            {
+                ctr.Enabled = isEnabled;
+            }            
+        }
+
 
     }
 }
