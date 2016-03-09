@@ -319,7 +319,7 @@ namespace CollectionInstall
             }
         }
 
-        private void SetContr
+        
 
         /// <summary>
         /// 设置TextBox、ComboBox控件是否可编辑
